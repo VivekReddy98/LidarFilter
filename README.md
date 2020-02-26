@@ -22,8 +22,8 @@ Implemented a Range Filter and a Temporal Median Filter on Lidar Scan Data
 
 ## Execting the proram
 1) If you have build using Release mode, use:
-        ./LSF.exe {rf} {timeSteps} {N} {MAX} {MIN} < example.txt  or
-        ./LSF.exe {mf} {timeSteps} {N} {D} < example.txt
+        i.e. ./LSF.exe {rf} {timeSteps} {N} {MAX} {MIN} < example.txt  or
+        i.e ./LSF.exe {mf} {timeSteps} {N} {D} < example.txt
 
         i.e. ./LSF.exe mf 5 5 2 < example.txt
 
