@@ -15,7 +15,9 @@ int main(){
 
     std::cin >> numTimeSteps >> TMFvar >> max >> min;
 
-    LSF::RangeFilter *rf = new LSF::RangeFilter((float)max, (float)min);
+    //LSF::RangeFilter *rf = new LSF::RangeFilter((float)max, (float)min);
+
+    LSF::MedianFilter *mf = new LSF::MedianFilter((int)TMFvar);
 
     std::string inputString;
     std::vector<float> inpScan;
@@ -23,13 +25,13 @@ int main(){
     for (int i = 0; i <= numTimeSteps; i++){
         std::getline(std::cin, inputString);
         inpScan = inParse(inputString);
-        rf->update(inpScan);
+        mf->update(inpScan);
         std::ostream_iterator<float> out_it (std::cout," ");
         std::copy ( inpScan.begin(), inpScan.end(), out_it );
         std::cout << "\n";
     }
 
-    free(rf);
+    free(mf);
 
     return 0;
 }

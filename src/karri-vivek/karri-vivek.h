@@ -26,10 +26,11 @@ class LSF::MedianFilter
     int currentTimeStamp, Dval, rangeMeasure;
     std::vector<float*> Db;
     std::vector<int> freeCheck;
+    void initSetUp(std::vector<float>& input_scan);
+    void storeNewScan(std::vector<float>& input_scan);
+    void findMedian(std::vector<float>& input_scan);
   public:
     MedianFilter(int valD);
     ~MedianFilter();
     void update(std::vector<float>& input_scan);
-    void initSetUp(std::vector<float>& input_scan);
-    void storeNewScan(std::vector<float>& input_scan)
 };
