@@ -10,20 +10,21 @@
 std::vector<float> inParse(std::string );
 
 int main(){
-    int numTimeSteps, TMFvar;
+    int numTimeSteps, TMFvar, ScanSize;
     float max, min;
 
-    std::cin >> numTimeSteps >> TMFvar >> max >> min;
+    std::cin >> numTimeSteps >> TMFvar >> ScanSize >> max >> min;
 
     //LSF::RangeFilter *rf = new LSF::RangeFilter((float)max, (float)min);
 
-    LSF::MedianFilter *mf = new LSF::MedianFilter((int)TMFvar);
+    LSF::MedianFilter *mf = new LSF::MedianFilter((int)TMFvar, (int)ScanSize);
 
     std::string inputString;
     std::vector<float> inpScan;
 
     for (int i = 0; i <= numTimeSteps; i++){
         std::getline(std::cin, inputString);
+        //std::cout << inputString << std::endl;
         inpScan = inParse(inputString);
         mf->update(inpScan);
         std::ostream_iterator<float> out_it (std::cout," ");

@@ -1,6 +1,8 @@
 #include "karri-vivek.h"
 #include <iostream>
+#include <queue>
 #include <cmath>
+#include <algorithm>
 
 LSF::RangeFilter::RangeFilter(float max, float min){
     if (max < min) {
@@ -24,13 +26,13 @@ void LSF::RangeFilter::update(std::vector<float>& input_scan){
      }
 }
 
-LSF::MedianFilter::MedianFilter(int D){
+LSF::MedianFilter::MedianFilter(int D, int N){
     if (D <= 0){
       throw std::runtime_error("D Must be >= 0");
     }
-    Dval = D;
+    Dval = D+1;
     currentTimeStamp = 0;
-    rangeMeasure = 0;
+    rangeMeasure = N;
 }
 
 LSF::MedianFilter::~MedianFilter(){
@@ -41,50 +43,40 @@ LSF::MedianFilter::~MedianFilter(){
 }
 
 void LSF::MedianFilter::update(std::vector<float>& input_scan){
+    if(input_scan.size() != rangeMeasure) return;
     if(currentTimeStamp == 0) { initSetUp(input_scan);}
     storeNewScan(input_scan);
     findMedian(input_scan);
 }
 
+
 void LSF::MedianFilter::findMedian(std::vector<float>& input_scan){
-    if (currentTimeStamp < Dval){
-        if(currentTimeStamp%2 != 0){
-           int index = floor(currentTimeStamp/2);
-           int k;
-           #pragma omp parallel for default(shared) private(k)
-           for(k = 0; k < input_scan.size(); k++) {
-               input_scan[k] = Db[index][k];
-           }
-        }
-        else{
-           int indexR = (int)floor(currentTimeStamp/2);
-           int indexL = indexR - 1;
-           int k;
-           #pragma omp parallel for default(shared) private(k)
-           for(k = 0; k < input_scan.size(); k++) {
-               input_scan[k] = (Db[indexL][k] + Db[indexR][k])/2;
-           }
-        }
-    }
-    else{
-      if(Dval%2 != 0){
-         int index = floor(Dval/2);
-         int k;
-         #pragma omp parallel for default(shared) private(k)
-         for(k = 0; k < input_scan.size(); k++) {
-             input_scan[k] = Db[index][k];
+
+    int numElemBother = currentTimeStamp > Dval ? Dval : currentTimeStamp;
+
+    int i, j;
+    #pragma omp parallel for default(shared) private(i, j, elem)
+    for (i = 0; i < rangeMeasure; i++){
+         std::vector<float> tempVector(numElemBother, 0.0);
+         for (j = 0; j < numElemBother; j++){
+              tempVector[j] = Db[j][i];
          }
-      }
-      else{
-         int indexR = std::floor(Dval/2);
-         int indexL = indexR - 1;
-         int k;
-         #pragma omp parallel for default(shared) private(k)
-         for(k = 0; k < input_scan.size(); k++) {
-             input_scan[k] = (Db[indexL][k] + Db[indexR][k])/2;
-         }
-      }
+         std::sort(tempVector.begin(), tempVector.end());
+         input_scan[i] = medianHelper(tempVector);
     }
+}
+
+float LSF::MedianFilter::medianHelper(std::vector<float>& tempVector){
+      int length = tempVector.size();
+      if(length%2 != 0) {
+          int index = (int)std::floor(length/2);
+          return tempVector[index];
+      }
+      else {
+        int indexR = (int)floor(currentTimeStamp/2);
+        int indexL = indexR - 1;
+        return (tempVector[indexR] + tempVector[indexL])/2;
+      }
 }
 
 void LSF::MedianFilter::storeNewScan(std::vector<float>& input_scan){
@@ -113,7 +105,6 @@ void LSF::MedianFilter::storeNewScan(std::vector<float>& input_scan){
 }
 
 void LSF::MedianFilter::initSetUp(std::vector<float>& input_scan){
-      rangeMeasure = input_scan.size();
       float *arr;
       int i = 0;
       while (i < Dval){

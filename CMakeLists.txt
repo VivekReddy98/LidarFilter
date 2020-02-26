@@ -6,7 +6,7 @@ enable_language(CXX)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(ENV{__DEBUG} 1)
-    set(CMAKE_CXX_FLAGS "-g -Wall")
+
 else()
     set(default_build_type "Release")
 endif()
@@ -24,6 +24,7 @@ if (ENABLE_OPENMP)
     set(CMAKE_CXX_FLAGS "-fopenmp")
 endif()
 
+set(CMAKE_CXX_FLAGS "-g ")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
    add_executable(tests.exe src/karri-vivek/karri-vivek.cpp test/main.cpp )

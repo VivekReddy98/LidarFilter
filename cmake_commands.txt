@@ -1,1 +1,5 @@
-cmake -D CMAKE_C_COMPILER="/path/to/your/c/compiler/executable" -DCMAKE_BUILD_TYPE="Debug" -DENABLE_OPENMP=On 
+cmake -D CMAKE_C_COMPILER="/path/to/your/c/compiler/executable" -DCMAKE_BUILD_TYPE="Debug" -DENABLE_OPENMP=On
+
+cmake -D CMAKE_CXX_COMPILER="/usr/bin/g++" -DCMAKE_BUILD_TYPE="Release"  ../
+
+cmake -D CMAKE_CXX_COMPILER="/usr/bin/g++" -DCMAKE_BUILD_TYPE="Release" -DENABLE_OPENMP=On ..

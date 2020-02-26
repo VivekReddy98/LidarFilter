@@ -16,21 +16,22 @@ class LSF::RangeFilter
   private:
     float range_max, range_min;
   public:
-    RangeFilter(float max, float min);
-    void update(std::vector<float>& input_scan);
+    RangeFilter(float , float );
+    void update(std::vector<float>& );
 };
 
 class LSF::MedianFilter
 {
   private:
-    int currentTimeStamp, Dval, rangeMeasure;
+    unsigned int currentTimeStamp, Dval, rangeMeasure;
     std::vector<float*> Db;
     std::vector<int> freeCheck;
-    void initSetUp(std::vector<float>& input_scan);
-    void storeNewScan(std::vector<float>& input_scan);
-    void findMedian(std::vector<float>& input_scan);
+    void initSetUp(std::vector<float>& );
+    void storeNewScan(std::vector<float>& );
+    void findMedian(std::vector<float>& );
+    float medianHelper(std::vector<float>& tempVector);
   public:
-    MedianFilter(int valD);
+    MedianFilter(int , int );
     ~MedianFilter();
-    void update(std::vector<float>& input_scan);
+    void update(std::vector<float>& );
 };
