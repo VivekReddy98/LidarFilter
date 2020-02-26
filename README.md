@@ -22,12 +22,15 @@ Implemented a Range Filter and a Temporal Median Filter on Lidar Scan Data
 
 ## Execting the proram
 1) If you have build using Release mode, use:
-        i.e. ./LSF.exe {rf} {timeSteps} {N} {MAX} {MIN} < example.txt  or
-        i.e ./LSF.exe {mf} {timeSteps} {N} {D} < example.txt
-
-        i.e. ./LSF.exe mf 5 5 2 < example.txt
+        
+        ./LSF.exe {rf} {timeSteps} {N} {MAX} {MIN} < example.txt  or
+        
+        ./LSF.exe {mf} {timeSteps} {N} {D} < example.txt
+        
+        Eg: ./LSF.exe mf 5 5 2 < example.txt
 
 2) If you have build using Debug mode, use:
+        
         ./LSFtest.exe < ../data/F_7_3.txt
 
 ## Note:
@@ -41,7 +44,6 @@ src/
   |----|
   |    testMain.cpp
   |----|
-       |
        karri-vivek/
               |
               |---- karri-vivek.cpp
