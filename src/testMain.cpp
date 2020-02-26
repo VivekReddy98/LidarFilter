@@ -15,6 +15,7 @@ int main(){
     int numTimeSteps, TMFvar, ScanSize;
     float max, min;
 
+    /// Both the Classes are run on the input filtered sequence, and the output is printed out exactly as specified in the normal mode entry point
     std::cin >> numTimeSteps >> TMFvar >> ScanSize >> max >> min;
 
     LSF::RangeFilter *rf = new LSF::RangeFilter((float)max, (float)min);
@@ -23,7 +24,6 @@ int main(){
 
     std::string inputString;
     std::vector<float> inpScan;
-
 
     for (int i = 0; i <= numTimeSteps; i++){
         std::getline(std::cin, inputString);
