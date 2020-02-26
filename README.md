@@ -1,2 +1,2 @@
 # LidarFilter
-Implemented a Range Filter and a Median Filter on Lidar Scan Data
+Implemented a Range Filter and a Temporal Median Filter on Lidar Scan Data
