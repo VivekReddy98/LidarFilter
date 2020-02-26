@@ -55,9 +55,9 @@ void LSF::MedianFilter::findMedian(std::vector<float>& input_scan){
     int numElemBother = currentTimeStamp > Dval ? Dval : currentTimeStamp;
 
     int i, j;
-    #pragma omp parallel for default(shared) private(i, j, elem)
+    std::vector<float> tempVector(numElemBother, 0.0);
+
     for (i = 0; i < rangeMeasure; i++){
-         std::vector<float> tempVector(numElemBother, 0.0);
          for (j = 0; j < numElemBother; j++){
               tempVector[j] = Db[j][i];
          }
@@ -73,8 +73,9 @@ float LSF::MedianFilter::medianHelper(std::vector<float>& tempVector){
           return tempVector[index];
       }
       else {
-        int indexR = (int)floor(currentTimeStamp/2);
+        int indexR = (int)floor(length/2);
         int indexL = indexR - 1;
+        //std::cout << indexR << " " << indexL << std::endl;
         return (tempVector[indexR] + tempVector[indexL])/2;
       }
 }
