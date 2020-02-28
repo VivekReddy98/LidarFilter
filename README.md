@@ -1,5 +1,5 @@
 # LidarFilter
-Implemented a Range Filter and a Temporal Median Filter on Lidar Scan Data
+Implemented a Range Filter and a Temporal Median Filter operated upon on Lidar Scan Sequence Data in C++, using STL and OpenMP Libraries.
 
 ## Instructions to Build the project
 1) Assuming you are in the root folder of the project i.e. LidarFilter/ and on a unix machine
@@ -10,15 +10,21 @@ Implemented a Range Filter and a Temporal Median Filter on Lidar Scan Data
 6) Run make to generate the executable.
 
 ## Build Configurations
-1) ''' cmake -D CMAKE_CXX_COMPILER="/usr/bin/g++" -DCMAKE_BUILD_TYPE="Release"  ../ '''           
-  (Release W/O OpenMP)
-2) ''' cmake -D CMAKE_CXX_COMPILER="/usr/bin/g++" -DCMAKE_BUILD_TYPE="Release" -DENABLE_OPENMP=On ../ '''
-  (Release With OpenMP)
-3) ''' cmake -D CMAKE_CXX_COMPILER="/usr/bin/g++" -DCMAKE_BUILD_TYPE="Debug"  ../'''
-  (Debug W/O OpenMP)
-4) ''' cmake -D CMAKE_CXX_COMPILER="/usr/bin/g++" -DCMAKE_BUILD_TYPE="Debug" -DENABLE_OPENMP=On ../ '''
-  (Debug with OpenMP)
-5) Note: Please specify your g++ compiler path in the CMAKE_CXX_COMPILER flag
+**Release W/O OpenMP** <br/>
+      
+       cmake -D CMAKE_CXX_COMPILER="/usr/bin/g++" -DCMAKE_BUILD_TYPE="Release"  ../            
+**Release With OpenMP** <br/>
+    
+       cmake -D CMAKE_CXX_COMPILER="/usr/bin/g++" -DCMAKE_BUILD_TYPE="Release" -DENABLE_OPENMP=On ../ 
+**Debug W/O OpenMP** <br/>
+     
+       cmake -D CMAKE_CXX_COMPILER="/usr/bin/g++" -DCMAKE_BUILD_TYPE="Debug"  ../
+**Debug with OpenMP** <br/>
+
+       cmake -D CMAKE_CXX_COMPILER="/usr/bin/g++" -DCMAKE_BUILD_TYPE="Debug" -DENABLE_OPENMP=On ../ 
+ 
+ **Note** <br/>
+1) Please specify your g++ compiler path in the CMAKE_CXX_COMPILER flag
 
 ## Execting the proram
 1) If you have build using Release mode, use:
@@ -39,12 +45,11 @@ Implemented a Range Filter and a Temporal Median Filter on Lidar Scan Data
 
 ## Folder Structure:
 src/
-  |----|
-  |    main.cpp
-  |----|
-  |    testMain.cpp
-  |----|
-       karri-vivek/
+  |----main.cpp
+  |    
+  |----testMain.cpp
+  |    
+  |----karri-vivek/
               |
               |---- karri-vivek.cpp
               |---- karri-vivek.h
