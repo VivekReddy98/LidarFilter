@@ -57,11 +57,11 @@ src/
     |── karri-vivek.h (Declaration of filter Classes)
 data/ (Test Data for executable generated from Debug Mode)
 ```
-## Filters Functionality
-1) **Range Filter**: This Crops all the values below and minimum and above the maximum.
-    ``` Time Complexity: O(N)  ```
+## Filters Functionality 
+1) **Range Filter**: Crops all the values below the minimum and above the maximum thresholds. <br/>
+    ``` Time Complexity: O(N)  ``` <br/>
     ``` Space Complexity: O(1)  ```
-2) **Temporal Median Filter**: This Returns the median of the current and the previous D Scans. 
-    ``` Time Complexity: O(Dlog(D) + D + N) for one time step.  ```
+2) **Temporal Median Filter**: Returns the median of the current and the previous D Scans. <br/>
+    ``` Time Complexity: O(Dlog(D) + D + N) for one time step.  ```  <br/>
     ``` Space Complexity: O((D+1)*N)  ```
       
