@@ -62,6 +62,6 @@ data/ (Test Data for executable generated from Debug Mode)
     ``` Time Complexity: O(N)  ``` <br/>
     ``` Space Complexity: O(1)  ```
 2) **Temporal Median Filter**: Returns the median of the current and the previous D Scans. <br/>
-    ``` Time Complexity: O(Dlog(D) + D + N) for one time step.  ```  <br/>
+    ``` Time Complexity: O(NDlog(D) + D + N) for one time step.  ```  <br/>
     ``` Space Complexity: O((D+1)*N)  ```
       
