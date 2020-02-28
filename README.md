@@ -45,15 +45,10 @@ Implemented a Range Filter and a Temporal Median Filter operated upon on Lidar S
 
 ## Folder Structure:
 src/
-  |----main.cpp
-  |    
-  |----testMain.cpp
-  |    
-  |----karri-vivek/
-              |
-              |---- karri-vivek.cpp
-              |---- karri-vivek.h
+├── main.cpp
+├── testMain.cpp
+├── karri-vivek              
+    ├── karri-vivek.cpp (Filter Class Defintions)        
+    |── karri-vivek.h (Declaration of filter Classes)
+data/ (Test Data for executable generated from Debug Mode)
 
-data/ (Data for Debug executable)
-
-## Link to the Repository: https://github.com/VivekReddy98
