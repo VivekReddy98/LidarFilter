@@ -34,6 +34,10 @@ Implemented a Range Filter and a Temporal Median Filter operated upon on Lidar S
         ./LSF.exe {mf} {timeSteps} {N} {D} < example.txt
         
         Eg: ./LSF.exe mf 5 5 2 < example.txt
+        
+        N: Length of the Sequence Data, D: Number of Previous Scans on which the TMF filter depends on
+        
+        MAX, MIN: Upper and Lower bounds for Range Filter
 
 2) If you have build using Debug mode, use:
         
@@ -53,3 +57,11 @@ src/
     |── karri-vivek.h (Declaration of filter Classes)
 data/ (Test Data for executable generated from Debug Mode)
 ```
+## Filters Functionality
+1) **Range Filter**: This Crops all the values below and minimum and above the maximum.
+    ``` Time Complexity: O(N)  ```
+    ``` Space Complexity: O(1)  ```
+2) **Temporal Median Filter**: This Returns the median of the current and the previous D Scans. 
+    ``` Time Complexity: O(Dlog(D) + D + N) for one time step.  ```
+    ``` Space Complexity: O((D+1)*N)  ```
+      
