@@ -26,7 +26,7 @@ Implemented a Range Filter and a Temporal Median Filter operated upon on Lidar S
  **Note** <br/>
 1) Please specify your g++ compiler path in the CMAKE_CXX_COMPILER flag
 
-## Execting the proram
+## Program Execution
 1) If you have build using Release mode, use:
         
         ./LSF.exe {rf} {timeSteps} {N} {MAX} {MIN} < example.txt  or
